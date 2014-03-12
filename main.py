@@ -28,13 +28,13 @@ def main():
 
 def process_post(post):
     for line in fileinput.input(post, inplace=True):
-        r = repl(line).rstrip()
+        r = repl(line)
         if r:
-            print r
+            print r.rstrip()
 
 def repl(line):
 
-    if line in DELETE:
+    if line.strip() in DELETE:
         return None
 
     for r in REPLACEMENTS:
