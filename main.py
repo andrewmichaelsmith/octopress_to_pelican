@@ -8,7 +8,7 @@ REPLACEMENTS = [
     (r"title: ?(.*)$", r"Title: \1"),
     (r"categories: ?(.*)$", r"Tags: \1"),
     (r"slug: ?(.*)$", r"Slug: \1"),
-    (r"---",""),
+    (r"---",None),
 ]
 
 def main():
@@ -26,7 +26,9 @@ def main():
 
 def process_post(post):
     for line in fileinput.input(post, inplace=True):
-        print repl(line).rstrip()
+        r = repl(line).rstrip()
+        if r:
+            print r
 
 def repl(line):
     for r in REPLACEMENTS:
