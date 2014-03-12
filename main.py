@@ -5,7 +5,7 @@ import re
 
 REPLACEMENTS = [
     (r"date: '?(.*)'$", r"Date: \1"),
-    (r"title: ?(.*)$", r"Title: \1"),
+    (r"title: [\"'](.*?)[\"']$", r"Title: \1"),
     (r"categories: ?(.*)$", r"Tags: \1"),
     (r"slug: ?(.*)$", r"Slug: \1"),
 ]
