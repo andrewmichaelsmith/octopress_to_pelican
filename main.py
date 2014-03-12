@@ -8,9 +8,11 @@ REPLACEMENTS = [
     (r"title: ?(.*)$", r"Title: \1"),
     (r"categories: ?(.*)$", r"Tags: \1"),
     (r"slug: ?(.*)$", r"Slug: \1"),
-    (r"---",None),
 ]
 
+DELETE = [
+    "---"
+]
 def main():
 
     if len(sys.argv) < 2:
@@ -31,6 +33,10 @@ def process_post(post):
             print r
 
 def repl(line):
+
+    if line in DELETE:
+        return None
+
     for r in REPLACEMENTS:
         sub = re.sub(r[0], r[1], line)
         if sub != line:
